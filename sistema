@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso - Sistema de Cotizaciones</title>
+<style>
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f1f5f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+.login-container { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; width: 320px; }
+h2 { color: #1e293b; margin-bottom: 20px; font-size: 16pt; }
+input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 11pt; }
+button { width: 100%; padding: 12px; background: #2563eb; color: white; border: none; border-radius: 6px; font-size: 11pt; cursor: pointer; font-weight: bold; margin-top: 10px; }
+button:hover { background: #1d4ed8; }
+.error-message { color: #dc2626; font-size: 10pt; margin-top: 12px; display: none; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="login-container">
+<h2>Control de Acceso</h2>
+<input type="text" id="username" placeholder="Usuario">
+<input type="password" id="password" placeholder="Contraseña">
+<button onclick="procesarAcceso()">Iniciar Sesión</button>
+<div id="error-box" class="error-message">Usuario o contraseña incorrectos</div>
+</div>
+<script>
+function procesarAcceso() {
+var userField = document.getElementById('username').value;
+var passField = document.getElementById('password').value;
+// 1. REGISTRO DE USUARIOS AUTORIZADOS
+var listaUsuarios = {
+"admin": "12345",
+"jose": "85gareus",
+"lily": "12345"
+};
+// 2. ENLACE DE REDIRECCIÓN A TU WEB APP O GOOGLE SHEET ACTUAL
+var urlSistema = "https://script.google.com/macros/s/AKfycbw7-2opLf1Sv4gxxBvi_TOUl5pMS6wzQa_1myljMTBT7gpwY8iWrTRHjzVmse3sn5nvXg/exec";
+// 3. PROCESO DE LOGUEO
+if (listaUsuarios[userField] && listaUsuarios[userField] === passField) {
+window.location.href = urlSistema;
+} else {
+document.getElementById('error-box').style.display = 'block';
+}
+}
+</script>
+</body>
+</html>
